@@ -23,3 +23,14 @@ services:
       KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT
       KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
       KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+
+  kowl:
+    image: quay.io/cloudhut/kowl:master # We use the master tag as we want to use the latest features e.g. creation of topics.
+    ports:
+      - 8000:8080
+    restart: unless-stopped
+    depends_on:
+      - zookeeper
+      - kafka
+    environment:
+      KAFKA_BROKERS: kafka:9092

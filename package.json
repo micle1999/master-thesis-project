@@ -1,0 +1,10 @@
+{
+  "dependencies": {
+    "@types/node-schedule": "^2.1.6",
+    "@types/uuid": "^9.0.8",
+    "bigchaindb-driver": "^4.3.0",
+    "kafkajs": "^2.2.4",
+    "node-schedule": "^2.1.1",
+    "uuid": "^9.0.1"
+  }
+}
