@@ -1,0 +1,13 @@
+Capturing output to logs/install-20240212-201832.log
+Installation started at 2024-02-12 20:18:32
+Using bigchaindb repo: 'bigchaindb/bigchaindb'
+Using bigchaindb branch 'master'
+Cloning into 'bigchaindb'...
+################################################################################################################################# 100.0%
+Configuring Dockers locally!
+Using macOS
+Operation Sytem: macOS
+Version: None
+Dependencies already installed:[ ansible ]
+stack.sh: line 239: ansible-playbook: command not found
+Finished stacking!

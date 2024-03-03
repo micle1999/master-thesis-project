@@ -4,7 +4,11 @@
     "@types/uuid": "^9.0.8",
     "bigchaindb-driver": "^4.3.0",
     "kafkajs": "^2.2.4",
+    "mongodb": "^6.4.0",
     "node-schedule": "^2.1.1",
     "uuid": "^9.0.1"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.24"
   }
 }

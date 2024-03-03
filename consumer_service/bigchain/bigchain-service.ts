@@ -22,7 +22,7 @@ export class BigchainService{
         
         const transaction = driver.Transaction.makeCreateTransaction(
             transactionData,
-            null,
+            null, //define metadata for transaction
             // A transaction needs an output
             [ Transaction.makeOutput(
                     Transaction.makeEd25519Condition(this.keypair.publicKey))
