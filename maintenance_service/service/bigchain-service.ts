@@ -1,6 +1,7 @@
 import { Connection, Ed25519Keypair, Transaction } from 'bigchaindb-driver';
 import { BigchainUtils } from '../utils/bigchain-utils';
 import { Asset } from '../model/assets/asset';
+import { MaintenanceLog } from '../model/assets/maintenance-log-asset';
 const driver = require('bigchaindb-driver')
 
 export class BigchainService{
@@ -9,12 +10,14 @@ export class BigchainService{
     keypair: Ed25519Keypair;
 
     constructor(){
-        
         this.keypair = BigchainUtils.generateKeypair();//new Ed25519Keypair()//
-        this.connection =  new Connection(BigchainUtils.BIGCHAIN_API_PATH)
     }
 
-    createMaintenanceTransaction(maintenanceData: Asset){
+    run(){
+        this.connection = new Connection(BigchainUtils.BIGCHAIN_API_PATH)
+    }
+
+    createMaintenanceTransaction(maintenanceData: MaintenanceLog){
         
         const transaction = driver.Transaction.makeCreateTransaction(
             maintenanceData,
@@ -27,6 +30,6 @@ export class BigchainService{
         );
         
         const signedTransaction = driver.Transaction.signTransaction(transaction, this.keypair.privateKey)
-        this.connection.postTransactionAsync(signedTransaction);
+        return this.connection.postTransactionAsync(signedTransaction);
     }
 }
