@@ -8,19 +8,23 @@ import { SENSOR_TYPE } from './utils/sensor-type';
 let sensors: Sensor[] = [];
 let topic: string;
 let brokerUri: string;
+let substationId: string;
 
-if (process.argv.length < 4) {
-    console.error('Arguments expected: 1.Kafka broker uri , 2.Kafka topic to produce data to');
+let counter = 0;
+
+if (process.argv.length < 5 && !process.env.DOCKER) {
+    console.error('Arguments expected: 1.Kafka broker uri , 2.Kafka topic to produce data to, 3.SubstationId');
     process.exit(1);
 }else{
-    brokerUri = process.argv[2];
-    topic = process.argv[3];
+    brokerUri = process.env.DOCKER? process.env.BROKER_URI : process.argv[2];
+    topic = process.env.DOCKER? process.env.TOPIC : process.argv[3];
+    substationId = process.env.DOCKER? process.env.SUBSTATION_ID : process.argv[4];
 }
 
-const sensor1 = new Sensor(SENSOR_TYPE.HUMIDITY,'ringId1','sensor1', 1000, {low:10, high:100});
+const sensor1 = new Sensor(SENSOR_TYPE.HUMIDITY, substationId ,'location1','sensor1', 200, {low:10, high:100});
 sensors.push(sensor1);
 
-const service = new StreamingService(brokerUri);
+const service = new StreamingService(brokerUri, substationId);
 service.setupProducer();
 
 for(let sensor of sensors){
@@ -31,17 +35,25 @@ for(let sensor of sensors){
 }
 
 function sensorJob(sensor:Sensor):void{
-    let value = sensor.measure();
-    console.log(value);
-    const data : SensorData = {
-        sensorId: sensor.id,
-        sensorType: sensor.type,
-        traceId: IdGenerator.generateId(),
-        ringId: sensor.ringId,
-        payload: value,
-        timestamp: Date.now()
-    };
-    service.sendSensorData(topic, data);
+    if(counter < 10000){
+        let value = sensor.measure();
+        console.log(value);
+        const data : SensorData = {
+            sensorId: sensor.id,
+            substationId: sensor.substationId,
+            sensorType: sensor.type,
+            traceId: IdGenerator.generateId(),
+            locationId: sensor.locationId,
+            payload: value,
+            timestamp: Date.now()
+        };
+        service.sendSensorData(topic, data);
+        counter++;
+    }else{
+        console.log("NO MORE VALUES GENERATED");
+    }
+    
+    
 }   
 
 export{}

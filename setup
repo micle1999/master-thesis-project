@@ -1,0 +1,38 @@
+Setup Kafka cluster:
+
+    1. run docker-compose-prod.yml file to setup cluster:
+        - docker compose -f docker-compose-prod.yml up -d
+    2. create partitioned topic by executing in the lead broker:
+        - ./kafka-topics --create --topic   sensor_data.location1 --replication-factor 1 --partitions 3 --bootstrap-server localhost:19092 
+    
+
+Setup Bigchain (single node):
+
+    4. run single BigchainDB node setup in Master_Thesis/bigchain/bigchaindb
+        - docker compose -f docker-compose.yml up -d
+    
+  
+
+Setup Consumer Service containers:
+
+    3. run docker run command to setup 3 consumer service containers:
+        - docker run -d --network=master_thesis_bigchain-network -e DOCKER=true -e BROKER_URI=kafka-1:19092 -e TOPIC=sensor_data.location1 -e BIGCHAIN_URI=http://bigchaindb:9984/api/v1/ -e GROUP_NAME=consumers.location1 consumer-service:latest
+
+
+
+Setup Maintenance Service container:
+
+    5. run docker run command to setup maintenance service container:
+        - docker run -d --network=master_thesis_bigchain-network -e DOCKER=true -e BIGCHAIN_URI=http://bigchaindb:9984/api/v1/ -e MONGO_URI=mongodb://mongodb:27017/ -p 3000:3000 maintenance-service:latest
+
+
+Setup Substation containers:
+
+    6. run docker run command to setup 3 substation service containers:
+        - docker run -d --network=master_thesis_bigchain-network -e DOCKER=true -e BROKER_URI=kafka-1:19092 -e TOPIC=sensor_data.location1 -e SUBSTATION_ID=substation1 substation-service:latest
+        - docker run -d -e DOCKER=true -e BROKER_URI=kafka-1:19092 -e TOPIC=sensor_data.location1 -e SUBSTATION_ID=substation2 substation-service:latest
+        - docker run -d -e DOCKER=true -e BROKER_URI=kafka-1:19092 -e TOPIC=sensor_data.location1 -e SUBSTATION_ID=substation3 substation-service:latest
+
+
+TODO:
+- Commands to setup Bigchain network with multiple nodes will be added

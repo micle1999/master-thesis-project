@@ -5,4 +5,5 @@ export class IdGenerator{
     static generateId(): string{
         return uuidv4();
     }
+
 }

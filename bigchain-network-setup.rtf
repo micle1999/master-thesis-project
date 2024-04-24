@@ -1,0 +1,52 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2708
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;\f1\fnil\fcharset0 Menlo-Regular;}
+{\colortbl;\red255\green255\blue255;\red255\green255\blue255;\red24\green24\blue24;\red88\green137\blue67;
+}
+{\*\expandedcolortbl;;\cssrgb\c100000\c100000\c100000;\cssrgb\c12184\c12184\c12153;\cssrgb\c41481\c59899\c33082;
+}
+\paperw11900\paperh16840\margl1440\margr1440\vieww18960\viewh8400\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs34 \cf0 1. Write down tendermint node id from every tendermint node:\
+	- exec to tendermint container and run : \'91tendermint show_node_id\'92\
+	\
+	ex:	\
+		t1 - f3f1b3e05c7608813b092d3082ce889c7a3b294e\
+		t2 - bc8a4a29a1e94fd75af24cdf00c3f2c3bc491164\
+		t3 - e6b11acb2fcfd8138edf33b6b6a3c5d296efc93d\
+		t4 - 0415b8a650c033034d59015e0c6d370f17a7ce7d\
+\
+2. Merge validator part from genesis.json file of corresponding tendermint instances with the genesis.json file of the coordinator instance.\
+\
+	ex of validator data:\
+		\{\
+      			"address": "1D4B2E5B73033D708A3E9ACB92E4697CF95DBC72",\
+		       "pub_key": \{\
+        			"type": "tendermint/PubKeyEd25519",\
+		        	"value": "k4LASF3hP2iq7Vxc8LfwjU+s5ZeVFpDACZmOTUZXdQQ="\
+      			\},\
+		      "power": "10",\
+		      "name": "member3"\
+    		\}\
+\
+3. Replace default genesis.json file in every tendermint container with merged genesis.json file.\
+\
+4. in config.toml file of every tendermint instance do following changes:\
+	- comment out proxy_app settings\
+	- moniker: change the name of the tendermint instance\
+	- laddr : change to \'93tcp://tendermint-n:26657\'94 (replace n with corresponding tendermint instance id)\
+	- do the same for p2p part of the file\
+	- persistent_peers -> For tendermint-1 instance\
+		- persistent_peers= \'93bc8a4a29a1e94fd75af24cdf00c3f2c3bc491164@tendermint-2:26656, \
+						  e6b11acb2fcfd8138edf33b6b6a3c5d296efc93d@tendermint-3:26656,\
+						  0415b8a650c033034d59015e0c6d370f17a7ce7d@tendermint-4:26656\'94\
+ 	- set addr_book_strict to false\
+	- set recheck to false\
+	- set create_empty_blocks to false\
+\
+5. Run tendermint instances\
+	- in every tendermint instance run : \'93
+\f1\fs24 \cf2 \cb3 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec4 tendermint node --proxy_app=tcp://bigchaindb-n:26658
+\f0\fs34 \cf0 \cb1 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 \'94 -> replace n with corresponding tendermint instance number\
+	}

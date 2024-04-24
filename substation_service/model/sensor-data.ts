@@ -1,7 +1,8 @@
 export interface SensorData{
     sensorId: string;
+    substationId: string;
     sensorType: string;
-    ringId: string;
+    locationId: string;
     traceId: string;
     payload: string;
     timestamp: number;

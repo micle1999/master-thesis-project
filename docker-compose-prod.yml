@@ -8,7 +8,8 @@ services:
       ZOOKEEPER_SERVER_ID: 1
     ports:
       - "2181:2181"
-
+    networks:
+      - bigchain-network
 
   kafka-1:
     image: confluentinc/cp-kafka:latest
@@ -23,6 +24,8 @@ services:
       KAFKA_BROKER_ID: 1
     depends_on:
       - zookeeper
+    networks:
+      - bigchain-network
 
   kafka-2:
     image: confluentinc/cp-kafka:latest
@@ -37,6 +40,8 @@ services:
       KAFKA_BROKER_ID: 2
     depends_on:
       - zookeeper
+    networks:
+      - bigchain-network
 
   kafka-3:
     image: confluentinc/cp-kafka:latest
@@ -51,3 +56,24 @@ services:
       KAFKA_BROKER_ID: 3
     depends_on:
       - zookeeper
+    networks:
+      - bigchain-network
+
+  kowl:
+    image: quay.io/cloudhut/kowl:master # We use the master tag as we want to use the latest features e.g. creation of topics.
+    ports:
+      - 8000:8080
+    restart: unless-stopped
+    depends_on:
+      - zookeeper
+      - kafka-1
+      - kafka-2
+      - kafka-3
+    environment:
+      KAFKA_BROKERS: kafka-1:19092
+    networks:
+      - bigchain-network
+
+networks:
+  bigchain-network:
+    driver: bridge

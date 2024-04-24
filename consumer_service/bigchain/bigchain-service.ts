@@ -8,14 +8,14 @@ export class BigchainService{
     connection: Connection;
     keypair: Ed25519Keypair;
 
-    constructor(){
+    constructor(bigchainUri: string){
         //this.connection = new driver.Connection(BigchainUtils.BIGCHAIN_API_PATH, {
         //    app_id: BigchainUtils.APP_ID,
         //    app_key: BigchainUtils.APP_KEY
         //})
         
         this.keypair = new Ed25519Keypair()//BigchainUtils.generateKeypair();
-        this.connection =  new Connection(BigchainUtils.BIGCHAIN_API_PATH)
+        this.connection =  new Connection(bigchainUri)//BigchainUtils.BIGCHAIN_API_PATH)
     }
 
     createTransaction(transactionData: Asset){

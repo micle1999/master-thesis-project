@@ -6,15 +6,12 @@ const driver = require('bigchaindb-driver')
 
 export class BigchainService{
 
-    connection: Connection;
+    connection!: Connection;
     keypair: Ed25519Keypair;
 
-    constructor(){
-        this.keypair = BigchainUtils.generateKeypair();//new Ed25519Keypair()//
-    }
-
-    run(){
-        this.connection = new Connection(BigchainUtils.BIGCHAIN_API_PATH)
+    constructor(connection: Connection){
+        this.keypair = new Ed25519Keypair()//BigchainUtils.generateKeypair();
+        this.connection = connection;
     }
 
     createMaintenanceTransaction(maintenanceData: MaintenanceLog){

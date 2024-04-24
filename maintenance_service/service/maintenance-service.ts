@@ -3,20 +3,17 @@ import { MaintenanceLog } from "../model/assets/maintenance-log-asset";
 import { SensorLog } from "../model/assets/sensor-log-asset";
 import { BigchainService } from "./bigchain-service";
 import { MongoService } from "./mongo-service";
+import * as mongoDB from "mongodb";
+import { Connection } from 'bigchaindb-driver';
 
 export class MaintenanceService{
     
     mongo: MongoService;
     bigchain: BigchainService;
 
-    constructor(){
-        this.mongo = new MongoService();
-        this.bigchain = new BigchainService();
-    }
-
-    async run(){
-        this.mongo.run();
-        this.bigchain.run();
+    constructor(sensorCollection: mongoDB.Collection, bigchainConnection: Connection){
+        this.mongo = new MongoService(sensorCollection);
+        this.bigchain = new BigchainService(bigchainConnection);
     }
 
     //called by GET request get data from sensor /{sensorId}

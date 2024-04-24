@@ -1,9 +1,9 @@
-import driver from 'bigchaindb-driver';
+import * as driver from 'bigchaindb-driver';
 import { writeFileSync } from 'fs';
 
 export class BigchainUtils{
 
-    static BIGCHAIN_API_PATH = 'http://localhost:9984/api/v1/';
+    //static BIGCHAIN_API_PATH = 'http://localhost:9984/api/v1/';
     static APP_ID = 'app_id to add';
     static APP_KEY = 'app_key to add';
 

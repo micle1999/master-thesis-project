@@ -5,16 +5,18 @@ import { ValueBoundary } from "./value-boundary";
 export class Sensor{
     
     id: string;
+    substationId: string;
     type: string;
-    ringId: string;
+    locationId: string;
     name: string;
     interval: number;
     valueBoundaries: ValueBoundary
 
-    constructor(type:string, ringId:string, name:string, interval:number, boundaries: ValueBoundary){
+    constructor(type:string, substationId:string, locationId:string, name:string, interval:number, boundaries: ValueBoundary){
         this.id = IdGenerator.generateId();
-        this.id = type;
-        this.ringId = ringId;
+        this.type = type;
+        this.substationId = substationId;
+        this.locationId = locationId;
         this.name = name;
         this.interval = interval;
         this.valueBoundaries = boundaries
