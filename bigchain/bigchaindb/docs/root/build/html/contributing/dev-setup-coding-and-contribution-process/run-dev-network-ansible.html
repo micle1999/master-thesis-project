@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html class="writer-html4" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Run a BigchainDB network with Ansible &mdash; BigchainDB 2.2.2 documentation</title><link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../_static/language_data.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Policies" href="../cross-project-policies/index.html" />
+    <link rel="prev" title="Run a BigchainDB network" href="run-dev-network-stack.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            BigchainDB
+          </a>
+              <div class="version">
+                2.2
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../index.html">BigchainDB Docs Home</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../about-bigchaindb.html">About BigchainDB</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../terminology.html">Terminology</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../properties.html">Properties of BigchainDB</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../basic-usage.html">Basic usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../installation/index.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../drivers/index.html">Drivers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../query.html">Queries in BigchainDB</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Contributing to BigchainDB</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html#contents">Contents</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../ways-to-contribute/index.html">Ways to Contribute</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">Developer Setup, Coding &amp; Contribution Process</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="write-code.html">Write Code</a></li>
+<li class="toctree-l4"><a class="reference internal" href="run-node-with-docker-compose.html">Notes on Running a Local Dev Node with Docker Compose</a></li>
+<li class="toctree-l4"><a class="reference internal" href="run-node-as-processes.html">Notes on Running a Local Dev Node as Processes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="run-dev-network-stack.html">Run a BigchainDB network</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Run a BigchainDB network with Ansible</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../cross-project-policies/index.html">Policies</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../korean/index.html">BigchainDB 문서</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">BigchainDB</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Contributing to BigchainDB</a></li>
+          <li class="breadcrumb-item"><a href="index.html">Developer Setup, Coding &amp; Contribution Process</a></li>
+      <li class="breadcrumb-item active">Run a BigchainDB network with Ansible</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/contributing/dev-setup-coding-and-contribution-process/run-dev-network-ansible.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <!---
+Copyright © 2020 Interplanetary Database Association e.V.,
+BigchainDB and IPDB software contributors.
+SPDX-License-Identifier: (Apache-2.0 AND CC-BY-4.0)
+Code is Apache-2.0 and docs are CC-BY-4.0
+---><div class="section" id="run-a-bigchaindb-network-with-ansible">
+<h1>Run a BigchainDB network with Ansible<a class="headerlink" href="#run-a-bigchaindb-network-with-ansible" title="Permalink to this headline">¶</a></h1>
+<p><strong>NOT for Production Use</strong></p>
+<p>You can use the following instructions to deploy a single or multi node
+BigchainDB network for dev/test using Ansible. Ansible will configure the BigchainDB node(s).</p>
+<p>Currently, this workflow is only supported for the following distributions:</p>
+<ul class="simple">
+<li>Ubuntu &gt;= 16.04</li>
+<li>CentOS &gt;= 7</li>
+<li>Fedora &gt;= 24</li>
+<li>MacOSX</li>
+</ul>
+<div class="section" id="minimum-requirements">
+<h2>Minimum Requirements<a class="headerlink" href="#minimum-requirements" title="Permalink to this headline">¶</a></h2>
+<p>Minimum resource requirements for a single node BigchainDB dev setup. <strong>The more the better</strong>:</p>
+<ul class="simple">
+<li>Memory &gt;= 512MB</li>
+<li>VCPUs &gt;= 1</li>
+</ul>
+</div>
+<div class="section" id="clone-the-bigchaindb-repository">
+<h2>Clone the BigchainDB repository<a class="headerlink" href="#clone-the-bigchaindb-repository" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>$ git clone https://github.com/bigchaindb/bigchaindb.git
+</pre></div>
+</div>
+</div>
+<div class="section" id="install-dependencies">
+<h2>Install dependencies<a class="headerlink" href="#install-dependencies" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><a class="reference external" href="http://docs.ansible.com/ansible/latest/intro_installation.html">Ansible</a></li>
+</ul>
+<p>You can also install <code class="docutils literal notranslate"><span class="pre">ansible</span></code> and other dependencies, if any, using the <code class="docutils literal notranslate"><span class="pre">boostrap.sh</span></code> script
+inside the BigchainDB repository.
+Navigate to <code class="docutils literal notranslate"><span class="pre">bigchaindb/pkg/scripts</span></code> and run the <code class="docutils literal notranslate"><span class="pre">bootstrap.sh</span></code> script to install the dependencies
+for your OS. The script also checks if the OS you are running is compatible with the
+supported versions.</p>
+<p><strong>Note</strong>: <code class="docutils literal notranslate"><span class="pre">bootstrap.sh</span></code> only supports Ubuntu &gt;= 16.04, CentOS &gt;= 7 and Fedora &gt;=24 and MacOSX.</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>$ cd bigchaindb/pkg/scripts/
+$ bash bootstrap.sh --operation install
+</pre></div>
+</div>
+<div class="section" id="bigchaindb-setup-configuration-s">
+<h3>BigchainDB Setup Configuration(s)<a class="headerlink" href="#bigchaindb-setup-configuration-s" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="local-setup">
+<h4>Local Setup<a class="headerlink" href="#local-setup" title="Permalink to this headline">¶</a></h4>
+<p>You can run the Ansible playbook <code class="docutils literal notranslate"><span class="pre">bigchaindb-start.yml</span></code> on your local dev machine and set up the BigchainDB node where
+BigchainDB can be run as a process or inside a Docker container(s) depending on your configuration.</p>
+<p>Before, running the playbook locally, you need to update the <code class="docutils literal notranslate"><span class="pre">hosts</span></code> and <code class="docutils literal notranslate"><span class="pre">stack-config.yml</span></code> configuration, which will notify Ansible that we need to run the play locally.</p>
+<div class="section" id="update-hosts">
+<h5>Update Hosts<a class="headerlink" href="#update-hosts" title="Permalink to this headline">¶</a></h5>
+<p>Navigate to <code class="docutils literal notranslate"><span class="pre">bigchaindb/pkg/configuration/hosts</span></code> inside the BigchainDB repository.</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>$ cd bigchaindb/pkg/configuration/hosts
+</pre></div>
+</div>
+<p>Edit <code class="docutils literal notranslate"><span class="pre">all</span></code> configuration file:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span># Delete any existing configuration in this file and insert
+# Hostname of dev machine
+&lt;HOSTNAME&gt; ansible_connection=local
+</pre></div>
+</div>
+</div>
+<div class="section" id="update-configuration">
+<h5>Update Configuration<a class="headerlink" href="#update-configuration" title="Permalink to this headline">¶</a></h5>
+<p>Navigate to <code class="docutils literal notranslate"><span class="pre">bigchaindb/pkg/configuration/vars</span></code> inside the BigchainDB repository.</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>$ cd bigchaindb/pkg/configuration/vars/stack-config.yml
+</pre></div>
+</div>
+<p>Edit <code class="docutils literal notranslate"><span class="pre">bdb-config.yml</span></code> configuration file as per your requirements, sample configuration file(s):</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>---
+stack_type: &quot;docker&quot; 
+stack_size: &quot;4&quot;
+
+
+OR
+
+---
+stack_type: &quot;local&quot;
+stack_type: &quot;1&quot;
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="bigchaindb-setup">
+<h3>BigchainDB Setup<a class="headerlink" href="#bigchaindb-setup" title="Permalink to this headline">¶</a></h3>
+<p>Now, You can safely run the <code class="docutils literal notranslate"><span class="pre">bigchaindb-start.yml</span></code> playbook and everything will be taken care of by <code class="docutils literal notranslate"><span class="pre">Ansible</span></code>. To run the playbook please navigate to the <code class="docutils literal notranslate"><span class="pre">bigchaindb/pkg/configuration</span></code> directory inside the BigchainDB repository and run the <code class="docutils literal notranslate"><span class="pre">bigchaindb-start.yml</span></code> playbook.</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>$ cd bigchaindb/pkg/configuration/
+
+$ ansible-playbook bigchaindb-start.yml -i hosts/all --extra-vars &quot;operation=start home_path=$(pwd)&quot;
+</pre></div>
+</div>
+<p>After successful execution of the playbook, you can verify that BigchainDB docker(s)/process(es) is(are) running.</p>
+<p>Verify BigchainDB process(es):</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>$ ps -ef | grep bigchaindb
+</pre></div>
+</div>
+<p>OR</p>
+<p>Verify BigchainDB Docker(s):</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>$ docker ps | grep bigchaindb
+</pre></div>
+</div>
+<p>You can now send transactions and verify the functionality of your BigchainDB node.
+See the <a class="reference external" href="https://docs.bigchaindb.com/projects/py-driver/en/latest/index.html">BigchainDB Python Driver documentation</a>
+for details on how to use it.</p>
+<p><strong>Note</strong>: The <code class="docutils literal notranslate"><span class="pre">bdb_root_url</span></code> can be be one of the following:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span># BigchainDB is running as a process
+bdb_root_url = http://&lt;HOST-IP&gt;:9984
+
+OR
+
+# BigchainDB is running inside a docker container
+bdb_root_url = http://&lt;HOST-IP&gt;:&lt;DOCKER-PUBLISHED-PORT&gt;
+</pre></div>
+</div>
+<p><strong>Note</strong>: BigchainDB has <a class="reference external" href="http://docs.bigchaindb.com/projects/server/en/latest/drivers-clients/index.html">other drivers as well</a>.</p>
+</div>
+<div class="section" id="experimental-running-ansible-a-remote-dev-host">
+<h3>Experimental: Running Ansible a Remote Dev/Host<a class="headerlink" href="#experimental-running-ansible-a-remote-dev-host" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="remote-setup">
+<h4>Remote Setup<a class="headerlink" href="#remote-setup" title="Permalink to this headline">¶</a></h4>
+<p>You can also run the Ansible playbook <code class="docutils literal notranslate"><span class="pre">bigchaindb-start.yml</span></code> on remote machine(s) and set up the BigchainDB node where
+BigchainDB can run as a process or inside a Docker container(s) depending on your configuration.</p>
+<p>Before, running the playbook on a remote host, you need to update the <code class="docutils literal notranslate"><span class="pre">hosts</span></code> and <code class="docutils literal notranslate"><span class="pre">stack-config.yml</span></code> configuration, which will notify Ansible that we need to run the play on a remote host.</p>
+<div class="section" id="update-remote-hosts">
+<h5>Update Remote Hosts<a class="headerlink" href="#update-remote-hosts" title="Permalink to this headline">¶</a></h5>
+<p>Navigate to <code class="docutils literal notranslate"><span class="pre">bigchaindb/pkg/configuration/hosts</span></code> inside the BigchainDB repository.</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>$ cd bigchaindb/pkg/configuration/hosts
+</pre></div>
+</div>
+<p>Edit <code class="docutils literal notranslate"><span class="pre">all</span></code> configuration file:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span># Delete any existing configuration in this file and insert
+&lt;Remote_Host_IP/Hostname&gt; ansible_ssh_user=&lt;USERNAME&gt; ansible_sudo_pass=&lt;PASSWORD&gt;
+</pre></div>
+</div>
+<p><strong>Note</strong>: You can add multiple hosts to the <code class="docutils literal notranslate"><span class="pre">all</span></code> configuration file. Non-root user with sudo enabled password is needed because ansible will run some tasks that require those permissions.</p>
+<p><strong>Note</strong>: You can also use other methods to get inside the remote machines instead of password based SSH. For other methods
+please consult <a class="reference external" href="http://docs.ansible.com/ansible/latest/intro_getting_started.html">Ansible Documentation</a>.</p>
+</div>
+<div class="section" id="update-remote-configuration">
+<h5>Update Remote Configuration<a class="headerlink" href="#update-remote-configuration" title="Permalink to this headline">¶</a></h5>
+<p>Navigate to <code class="docutils literal notranslate"><span class="pre">bigchaindb/pkg/configuration/vars</span></code> inside the BigchainDB repository.</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>$ cd bigchaindb/pkg/configuration/vars/stack-config.yml
+</pre></div>
+</div>
+<p>Edit <code class="docutils literal notranslate"><span class="pre">stack-config.yml</span></code> configuration file as per your requirements, sample configuration file(s):</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>---
+stack_type: &quot;docker&quot; 
+stack_size: &quot;4&quot;
+
+
+OR
+
+---
+stack_type: &quot;local&quot;
+stack_type: &quot;1&quot;
+</pre></div>
+</div>
+<p>After, the configuration of remote hosts, <a class="reference external" href="#bigchaindb-setup-ansible">run the Ansible playbook and verify your deployment</a>.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="run-dev-network-stack.html" class="btn btn-neutral float-left" title="Run a BigchainDB network" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../cross-project-policies/index.html" class="btn btn-neutral float-right" title="Policies" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, BigchainDB Contributors.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

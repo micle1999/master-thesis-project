@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html class="writer-html4" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Our Release Process &mdash; BigchainDB 2.2.2 documentation</title><link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../_static/language_data.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="BigchainDB 문서" href="../../korean/index.html" />
+    <link rel="prev" title="Python Style Guide" href="python-style-guide.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            BigchainDB
+          </a>
+              <div class="version">
+                2.2
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../index.html">BigchainDB Docs Home</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../about-bigchaindb.html">About BigchainDB</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../terminology.html">Terminology</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../properties.html">Properties of BigchainDB</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../basic-usage.html">Basic usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../installation/index.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../drivers/index.html">Drivers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../query.html">Queries in BigchainDB</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Contributing to BigchainDB</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html#contents">Contents</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../ways-to-contribute/index.html">Ways to Contribute</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../dev-setup-coding-and-contribution-process/index.html">Developer Setup, Coding &amp; Contribution Process</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">Policies</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="code-of-conduct.html">Contributor Code of Conduct</a></li>
+<li class="toctree-l4"><a class="reference internal" href="python-style-guide.html">Python Style Guide</a></li>
+<li class="toctree-l4"><a class="reference external" href="https://github.com/ascribe/javascript">JavaScript Style Guide</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Our Release Process</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../korean/index.html">BigchainDB 문서</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">BigchainDB</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Contributing to BigchainDB</a></li>
+          <li class="breadcrumb-item"><a href="index.html">Policies</a></li>
+      <li class="breadcrumb-item active">Our Release Process</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/contributing/cross-project-policies/release-process.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <!---
+Copyright © 2020 Interplanetary Database Association e.V.,
+BigchainDB and IPDB software contributors.
+SPDX-License-Identifier: (Apache-2.0 AND CC-BY-4.0)
+Code is Apache-2.0 and docs are CC-BY-4.0
+---><div class="section" id="our-release-process">
+<h1>Our Release Process<a class="headerlink" href="#our-release-process" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="notes">
+<h2>Notes<a class="headerlink" href="#notes" title="Permalink to this headline">¶</a></h2>
+<p>BigchainDB follows
+<a class="reference external" href="https://packaging.python.org/tutorials/distributing-packages/#choosing-a-versioning-scheme">the Python form of Semantic Versioning</a>
+(i.e. MAJOR.MINOR.PATCH),
+which is almost identical
+to <a class="reference external" href="http://semver.org/">regular semantic versioning</a>, but there’s no hyphen, e.g.</p>
+<ul class="simple">
+<li><code class="docutils literal notranslate"><span class="pre">0.9.0</span></code> for a typical final release</li>
+<li><code class="docutils literal notranslate"><span class="pre">4.5.2a1</span></code> not <code class="docutils literal notranslate"><span class="pre">4.5.2-a1</span></code> for the first Alpha release</li>
+<li><code class="docutils literal notranslate"><span class="pre">3.4.5rc2</span></code> not <code class="docutils literal notranslate"><span class="pre">3.4.5-rc2</span></code> for Release Candidate 2</li>
+</ul>
+<p><strong>Note 1:</strong> For Git tags (which are used to identify releases on GitHub), we append a <code class="docutils literal notranslate"><span class="pre">v</span></code> in front. For example, the Git tag for version <code class="docutils literal notranslate"><span class="pre">2.0.0a1</span></code> was <code class="docutils literal notranslate"><span class="pre">v2.0.0a1</span></code>.</p>
+<p><strong>Note 2:</strong> For Docker image tags (e.g. on Docker Hub), we use longer version names for Alpha, Beta and Release Candidate releases. For example, the Docker image tag for version <code class="docutils literal notranslate"><span class="pre">2.0.0a2</span></code> was <code class="docutils literal notranslate"><span class="pre">2.0.0-alpha2</span></code>.</p>
+<p>We use <code class="docutils literal notranslate"><span class="pre">0.9</span></code> and <code class="docutils literal notranslate"><span class="pre">0.9.0</span></code> as example version and short-version values below. You should replace those with the correct values for your new version.</p>
+<p>We follow <a class="reference external" href="https://github.com/bigchaindb/BEPs/tree/master/1">BEP-1</a>, which is our variant of C4, the Collective Code Construction Contract, so a release is just a <a class="reference external" href="https://git-scm.com/book/en/v2/Git-Basics-Tagging">tagged commit</a> on the <code class="docutils literal notranslate"><span class="pre">master</span></code> branch, i.e. a label for a particular Git commit.</p>
+<p>The following steps are what we do to release a new version of <em>BigchainDB Server</em>. The steps to release the Python Driver are similar but not the same.</p>
+</div>
+<div class="section" id="steps">
+<h2>Steps<a class="headerlink" href="#steps" title="Permalink to this headline">¶</a></h2>
+<ol>
+<li><p class="first">Create a pull request where you make the following changes:</p>
+<ul>
+<li><p class="first">Update <code class="docutils literal notranslate"><span class="pre">CHANGELOG.md</span></code></p>
+</li>
+<li><p class="first">Update all Docker image tags in all Kubernetes YAML files (in the <code class="docutils literal notranslate"><span class="pre">k8s/</span></code> directory).
+For example, in the files:</p>
+<ul class="simple">
+<li><code class="docutils literal notranslate"><span class="pre">k8s/bigchaindb/bigchaindb-ss.yaml</span></code> and</li>
+<li><code class="docutils literal notranslate"><span class="pre">k8s/dev-setup/bigchaindb.yaml</span></code></li>
+</ul>
+<p>find the line of the form <code class="docutils literal notranslate"><span class="pre">image:</span> <span class="pre">bigchaindb/bigchaindb:0.8.1</span></code> and change the version number to the new version number, e.g. <code class="docutils literal notranslate"><span class="pre">0.9.0</span></code>. (This is the Docker image that Kubernetes should pull from Docker Hub.)
+Keep in mind that this is a <em>Docker image tag</em> so our naming convention is
+a bit different; see Note 2 in the <strong>Notes</strong> section above.</p>
+</li>
+<li><p class="first">In <code class="docutils literal notranslate"><span class="pre">bigchaindb/version.py</span></code>:</p>
+<ul class="simple">
+<li>update <code class="docutils literal notranslate"><span class="pre">__version__</span></code> to e.g. <code class="docutils literal notranslate"><span class="pre">0.9.0</span></code> (with no <code class="docutils literal notranslate"><span class="pre">.dev</span></code> on the end)</li>
+<li>update <code class="docutils literal notranslate"><span class="pre">__short_version__</span></code> to e.g. <code class="docutils literal notranslate"><span class="pre">0.9</span></code> (with no <code class="docutils literal notranslate"><span class="pre">.dev</span></code> on the end)</li>
+</ul>
+</li>
+<li><p class="first">In the docs about installing BigchainDB (and Tendermint), and in the associated scripts, recommend/install a version of Tendermint that <em>actually works</em> with the soon-to-be-released version of BigchainDB. You can find all such references by doing a search for the previously-recommended version number, such as <code class="docutils literal notranslate"><span class="pre">0.31.5</span></code>.</p>
+</li>
+<li><p class="first">In <code class="docutils literal notranslate"><span class="pre">setup.py</span></code>, <em>maybe</em> update the development status item in the <code class="docutils literal notranslate"><span class="pre">classifiers</span></code> list. For example, one allowed value is <code class="docutils literal notranslate"><span class="pre">&quot;Development</span> <span class="pre">Status</span> <span class="pre">::</span> <span class="pre">5</span> <span class="pre">-</span> <span class="pre">Production/Stable&quot;</span></code>. The <a class="reference external" href="https://pypi.python.org/pypi?%3Aaction=list_classifiers">allowed values are listed at pypi.python.org</a>.</p>
+</li>
+</ul>
+</li>
+<li><p class="first"><strong>Wait for all the tests to pass!</strong></p>
+</li>
+<li><p class="first">Merge the pull request into the <code class="docutils literal notranslate"><span class="pre">master</span></code> branch.</p>
+</li>
+<li><p class="first">Go to the <a class="reference external" href="https://github.com/bigchaindb/bigchaindb/releases">bigchaindb/bigchaindb Releases page on GitHub</a>
+and click the “Draft a new release” button.</p>
+</li>
+<li><p class="first">Fill in the details:</p>
+<ul class="simple">
+<li><strong>Tag version:</strong> version number preceded by <code class="docutils literal notranslate"><span class="pre">v</span></code>, e.g. <code class="docutils literal notranslate"><span class="pre">v0.9.1</span></code></li>
+<li><strong>Target:</strong> the last commit that was just merged. In other words, that commit will get a Git tag with the value given for tag version above.</li>
+<li><strong>Title:</strong> Same as tag version above, e.g <code class="docutils literal notranslate"><span class="pre">v0.9.1</span></code></li>
+<li><strong>Description:</strong> The body of the changelog entry (Added, Changed, etc.)</li>
+</ul>
+</li>
+<li><p class="first">Click “Publish release” to publish the release on GitHub.</p>
+</li>
+<li><p class="first">On your local computer, make sure you’re on the <code class="docutils literal notranslate"><span class="pre">master</span></code> branch and that it’s up-to-date with the <code class="docutils literal notranslate"><span class="pre">master</span></code> branch in the bigchaindb/bigchaindb repository (e.g. <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">pull</span> <span class="pre">upstream</span> <span class="pre">master</span></code>). We’re going to use that to push a new <code class="docutils literal notranslate"><span class="pre">bigchaindb</span></code> package to PyPI.</p>
+</li>
+<li><p class="first">Make sure you have a <code class="docutils literal notranslate"><span class="pre">~/.pypirc</span></code> file containing credentials for PyPI.</p>
+</li>
+<li><p class="first">Do <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">release</span></code> to build and publish the new <code class="docutils literal notranslate"><span class="pre">bigchaindb</span></code> package on PyPI. For this step you need to have <code class="docutils literal notranslate"><span class="pre">twine</span></code> installed. If you get an error like <code class="docutils literal notranslate"><span class="pre">Makefile:135:</span> <span class="pre">recipe</span> <span class="pre">for</span> <span class="pre">target</span> <span class="pre">'clean-pyc'</span> <span class="pre">failed</span></code> then try doing</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo chown -R $(whoami):$(whoami) .
+</pre></div>
+</div>
+</li>
+<li><p class="first"><a class="reference external" href="https://readthedocs.org/accounts/login/">Log in to readthedocs.org</a> and go to the <strong>BigchainDB Server</strong> project, then:</p>
+</li>
+</ol>
+<ul class="simple">
+<li>Click on “Builds”, select “latest” from the drop-down menu, then click the “Build Version:” button.</li>
+<li>Wait for the build of “latest” to finish. This can take a few minutes.</li>
+<li>Go to Admin –&gt; Advanced Settings
+and make sure that “Default branch:” (i.e. what “latest” points to)
+is set to the new release’s tag, e.g. <code class="docutils literal notranslate"><span class="pre">v0.9.1</span></code>.
+(It won’t be an option if you didn’t wait for the build of “latest” to finish.)
+Then scroll to the bottom and click “Save”.</li>
+<li>Go to Admin –&gt; Versions
+and under <strong>Choose Active Versions</strong>, do these things:<ol>
+<li>Make sure that the new version’s tag is “Active” and “Public”</li>
+<li>Make sure the <strong>stable</strong> branch is <em>not</em> active.</li>
+<li>Scroll to the bottom of the page and click “Save”.</li>
+</ol>
+</li>
+</ul>
+<ol class="simple">
+<li>Go to <a class="reference external" href="https://hub.docker.com/">Docker Hub</a> and sign in, then:</li>
+</ol>
+<ul class="simple">
+<li>Click on “Organizations”</li>
+<li>Click on “bigchaindb”</li>
+<li>Click on “bigchaindb/bigchaindb”</li>
+<li>Click on “Build Settings”</li>
+<li>Find the row where “Docker Tag Name” equals <code class="docutils literal notranslate"><span class="pre">latest</span></code>
+and change the value of “Name” to the name (Git tag)
+of the new release, e.g. <code class="docutils literal notranslate"><span class="pre">v0.9.0</span></code>.</li>
+<li>If the release is an Alpha, Beta or Release Candidate release,
+then a new row must be added.
+You can do that by clicking the green “+” (plus) icon.
+The contents of the new row should be similar to the existing rows
+of previous releases like that.</li>
+<li>Click on “Tags”</li>
+<li>Delete the “latest” tag (so we can rebuild it)</li>
+<li>Click on “Build Settings” again</li>
+<li>Click on the “Trigger” button for the “latest” tag and make sure it worked by clicking on “Tags” again</li>
+<li>If the release is an Alpha, Beta or Release Candidate release,
+then click on the “Trigger” button for that tag as well.</li>
+</ul>
+<p>Congratulations, you have released a new version of BigchainDB Server!</p>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="python-style-guide.html" class="btn btn-neutral float-left" title="Python Style Guide" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../../korean/index.html" class="btn btn-neutral float-right" title="BigchainDB 문서" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, BigchainDB Contributors.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

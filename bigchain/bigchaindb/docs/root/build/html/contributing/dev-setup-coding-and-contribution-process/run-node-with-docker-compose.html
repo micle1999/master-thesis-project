@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html class="writer-html4" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Notes on Running a Local Dev Node with Docker Compose &mdash; BigchainDB 2.2.2 documentation</title><link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../_static/language_data.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Notes on Running a Local Dev Node as Processes" href="run-node-as-processes.html" />
+    <link rel="prev" title="Write Code" href="write-code.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            BigchainDB
+          </a>
+              <div class="version">
+                2.2
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../index.html">BigchainDB Docs Home</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../about-bigchaindb.html">About BigchainDB</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../terminology.html">Terminology</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../properties.html">Properties of BigchainDB</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../basic-usage.html">Basic usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../installation/index.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../drivers/index.html">Drivers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../query.html">Queries in BigchainDB</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Contributing to BigchainDB</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html#contents">Contents</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../ways-to-contribute/index.html">Ways to Contribute</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">Developer Setup, Coding &amp; Contribution Process</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="write-code.html">Write Code</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Notes on Running a Local Dev Node with Docker Compose</a></li>
+<li class="toctree-l4"><a class="reference internal" href="run-node-as-processes.html">Notes on Running a Local Dev Node as Processes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="run-dev-network-stack.html">Run a BigchainDB network</a></li>
+<li class="toctree-l4"><a class="reference internal" href="run-dev-network-ansible.html">Run a BigchainDB network with Ansible</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../cross-project-policies/index.html">Policies</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../korean/index.html">BigchainDB 문서</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">BigchainDB</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Contributing to BigchainDB</a></li>
+          <li class="breadcrumb-item"><a href="index.html">Developer Setup, Coding &amp; Contribution Process</a></li>
+      <li class="breadcrumb-item active">Notes on Running a Local Dev Node with Docker Compose</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/contributing/dev-setup-coding-and-contribution-process/run-node-with-docker-compose.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <!---
+Copyright © 2020 Interplanetary Database Association e.V.,
+BigchainDB and IPDB software contributors.
+SPDX-License-Identifier: (Apache-2.0 AND CC-BY-4.0)
+Code is Apache-2.0 and docs are CC-BY-4.0
+---><div class="section" id="notes-on-running-a-local-dev-node-with-docker-compose">
+<h1>Notes on Running a Local Dev Node with Docker Compose<a class="headerlink" href="#notes-on-running-a-local-dev-node-with-docker-compose" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="setting-up-a-single-node-development-environment-with-docker-compose">
+<h2>Setting up a single node development environment with <code class="docutils literal notranslate"><span class="pre">docker-compose</span></code><a class="headerlink" href="#setting-up-a-single-node-development-environment-with-docker-compose" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="using-the-bigchaindb-2-0-developer-toolbox">
+<h3>Using the BigchainDB 2.0 developer toolbox<a class="headerlink" href="#using-the-bigchaindb-2-0-developer-toolbox" title="Permalink to this headline">¶</a></h3>
+<p>We grouped all useful commands under a simple <code class="docutils literal notranslate"><span class="pre">Makefile</span></code>.</p>
+<p>Run a BigchainDB node in the foreground:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>make<span class="w"> </span>run
+</pre></div>
+</div>
+<p>There are also other commands you can execute:</p>
+<ul class="simple">
+<li><code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">start</span></code>: Run BigchainDB from source and daemonize it (stop it with <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">stop</span></code>).</li>
+<li><code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">stop</span></code>: Stop BigchainDB.</li>
+<li><code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">logs</span></code>: Attach to the logs.</li>
+<li><code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">test</span></code>: Run all unit and acceptance tests.</li>
+<li><code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">test-unit-watch</span></code>: Run all tests and wait. Every time you change code, tests will be run again.</li>
+<li><code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">cov</span></code>: Check code coverage and open the result in the browser.</li>
+<li><code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">doc</span></code>: Generate HTML documentation and open it in the browser.</li>
+<li><code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">clean</span></code>: Remove all build, test, coverage and Python artifacts.</li>
+<li><code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">reset</span></code>: Stop and REMOVE all containers. WARNING: you will LOSE all data stored in BigchainDB.</li>
+</ul>
+</div>
+<div class="section" id="using-docker-compose-directly">
+<h3>Using <code class="docutils literal notranslate"><span class="pre">docker-compose</span></code> directly<a class="headerlink" href="#using-docker-compose-directly" title="Permalink to this headline">¶</a></h3>
+<p>The BigchainDB <code class="docutils literal notranslate"><span class="pre">Makefile</span></code> is a wrapper around some <code class="docutils literal notranslate"><span class="pre">docker-compose</span></code> commands we use frequently. If you need a finer granularity to manage the containers, you can still use <code class="docutils literal notranslate"><span class="pre">docker-compose</span></code> directly. This part of the documentation explains how to do that.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>docker-compose<span class="w"> </span>build<span class="w"> </span>bigchaindb
+$<span class="w"> </span>docker-compose<span class="w"> </span>up<span class="w"> </span>-d<span class="w"> </span>bdb
+</pre></div>
+</div>
+<p>The above command will launch all 3 main required services/processes:</p>
+<ul class="simple">
+<li><code class="docutils literal notranslate"><span class="pre">mongodb</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">tendermint</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">bigchaindb</span></code></li>
+</ul>
+<p>To follow the logs of the <code class="docutils literal notranslate"><span class="pre">tendermint</span></code> service:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>docker-compose<span class="w"> </span>logs<span class="w"> </span>-f<span class="w"> </span>tendermint
+</pre></div>
+</div>
+<p>To follow the logs of the <code class="docutils literal notranslate"><span class="pre">bigchaindb</span></code> service:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>docker-compose<span class="w"> </span>logs<span class="w"> </span>-f<span class="w"> </span>bigchaindb
+</pre></div>
+</div>
+<p>To follow the logs of the <code class="docutils literal notranslate"><span class="pre">mongodb</span></code> service:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>docker-compose<span class="w"> </span>logs<span class="w"> </span>-f<span class="w"> </span>mdb
+</pre></div>
+</div>
+<p>Simple health check:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>docker-compose<span class="w"> </span>up<span class="w"> </span>curl-client
+</pre></div>
+</div>
+<p>Post and retrieve a transaction – copy/paste a driver basic example of a
+<code class="docutils literal notranslate"><span class="pre">CREATE</span></code> transaction:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>docker-compose<span class="w"> </span>-f<span class="w"> </span>docker-compose.yml<span class="w"> </span>run<span class="w"> </span>--rm<span class="w"> </span>bdb-driver<span class="w"> </span>ipython
+</pre></div>
+</div>
+<p><strong>TODO</strong>: A python script to post and retrieve a transaction(s).</p>
+</div>
+<div class="section" id="running-tests">
+<h3>Running Tests<a class="headerlink" href="#running-tests" title="Permalink to this headline">¶</a></h3>
+<p>Run all the tests using:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>docker-compose<span class="w"> </span>run<span class="w"> </span>--rm<span class="w"> </span>--no-deps<span class="w"> </span>bigchaindb<span class="w"> </span>pytest<span class="w"> </span>-v
+</pre></div>
+</div>
+<p>Run tests from a file:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>docker-compose<span class="w"> </span>run<span class="w"> </span>--rm<span class="w"> </span>--no-deps<span class="w"> </span>bigchaindb<span class="w"> </span>pytest<span class="w"> </span>/path/to/file<span class="w"> </span>-v
+</pre></div>
+</div>
+<p>Run specific tests:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>docker-compose<span class="w"> </span>run<span class="w"> </span>--rm<span class="w"> </span>--no-deps<span class="w"> </span>bigchaindb<span class="w"> </span>pytest<span class="w"> </span>/path/to/file<span class="w"> </span>-k<span class="w"> </span><span class="s2">&quot;&lt;test_name&gt;&quot;</span><span class="w"> </span>-v
+</pre></div>
+</div>
+</div>
+<div class="section" id="building-docs">
+<h3>Building Docs<a class="headerlink" href="#building-docs" title="Permalink to this headline">¶</a></h3>
+<p>You can also develop and build the BigchainDB docs using <code class="docutils literal notranslate"><span class="pre">docker-compose</span></code>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>docker-compose<span class="w"> </span>build<span class="w"> </span>bdocs
+$<span class="w"> </span>docker-compose<span class="w"> </span>up<span class="w"> </span>-d<span class="w"> </span>bdocs
+</pre></div>
+</div>
+<p>The docs will be hosted on port <strong>33333</strong>, and can be accessed over <a class="reference external" href="http:/localhost:33333">localhost</a>, <a class="reference external" href="http:/127.0.0.1:33333">127.0.0.1</a>
+OR http:/HOST_IP:33333.</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="write-code.html" class="btn btn-neutral float-left" title="Write Code" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="run-node-as-processes.html" class="btn btn-neutral float-right" title="Notes on Running a Local Dev Node as Processes" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, BigchainDB Contributors.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

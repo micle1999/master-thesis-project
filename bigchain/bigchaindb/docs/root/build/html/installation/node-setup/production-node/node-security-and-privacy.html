@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html class="writer-html4" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Production Node Security &amp; Privacy &mdash; BigchainDB 2.2.2 documentation</title><link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  <script id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../../_static/language_data.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Using a Reverse Proxy" href="reverse-proxy-notes.html" />
+    <link rel="prev" title="Production Node Components" href="node-components.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            BigchainDB
+          </a>
+              <div class="version">
+                2.2
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../index.html">BigchainDB Docs Home</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../about-bigchaindb.html">About BigchainDB</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../terminology.html">Terminology</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../properties.html">Properties of BigchainDB</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../basic-usage.html">Basic usage</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Installation</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../quickstart.html">Introduction</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">Node setup</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../deploy-a-machine.html">Deploy a Machine for Your BigchainDB Node</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../aws-setup.html">Basic AWS Setup</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../all-in-one-bigchaindb.html">Run BigchainDB with all-in-one Docker</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../bigchaindb-node-ansible.html">Setting up a network of nodes with the Ansible script</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../set-up-node-software.html">Set Up BigchainDB, MongoDB and Tendermint</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../set-up-nginx.html">Set Up NGINX</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../configuration.html">Configuration Settings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../bigchaindb-cli.html">Command Line Interface (CLI)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../troubleshooting.html">Troubleshooting</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">Production Nodes</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="node-requirements.html">Production Node Requirements</a></li>
+<li class="toctree-l4"><a class="reference internal" href="node-assumptions.html">Production Node Assumptions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="node-components.html">Production Node Components</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Production Node Security &amp; Privacy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="reverse-proxy-notes.html">Using a Reverse Proxy</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../release-notes.html">Release Notes</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../network-setup/index.html">Network setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../api/index.html">API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../commands-and-backend/index.html">Commands And Backend</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../appendices/index.html">Appendices</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../drivers/index.html">Drivers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../query.html">Queries in BigchainDB</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../contributing/index.html">Contributing to BigchainDB</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../korean/index.html">BigchainDB 문서</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">BigchainDB</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Installation</a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Node setup</a></li>
+          <li class="breadcrumb-item"><a href="index.html">Production Nodes</a></li>
+      <li class="breadcrumb-item active">Production Node Security &amp; Privacy</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/installation/node-setup/production-node/node-security-and-privacy.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <!---
+Copyright © 2020 Interplanetary Database Association e.V.,
+BigchainDB and IPDB software contributors.
+SPDX-License-Identifier: (Apache-2.0 AND CC-BY-4.0)
+Code is Apache-2.0 and docs are CC-BY-4.0
+---><div class="section" id="production-node-security-privacy">
+<h1>Production Node Security &amp; Privacy<a class="headerlink" href="#production-node-security-privacy" title="Permalink to this headline">¶</a></h1>
+<p>Here are some references about how to secure an Ubuntu 18.04 server:</p>
+<ul class="simple">
+<li><a class="reference external" href="https://help.ubuntu.com/lts/serverguide/security.html.en">Ubuntu 18.04 - Ubuntu Server Guide - Security</a></li>
+<li><a class="reference external" href="https://blog.ubuntu.com/2018/07/30/national-cyber-security-centre-publish-ubuntu-18-04-lts-security-guide">Ubuntu Blog: National Cyber Security Centre publish Ubuntu 18.04 LTS Security Guide</a></li>
+</ul>
+<p>Also, here are some recommendations a node operator can follow to enhance the privacy of the data coming to, stored on, and leaving their node:</p>
+<ul class="simple">
+<li>Ensure that all data stored on a node is encrypted at rest, e.g. using full disk encryption. This can be provided as a service by the operating system, transparently to BigchainDB, MongoDB and Tendermint.</li>
+<li>Ensure that all data is encrypted in transit, i.e. enforce using HTTPS for the HTTP API and the Websocket API. This can be done using NGINX or similar, as we do with the IPDB Testnet.</li>
+</ul>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="node-components.html" class="btn btn-neutral float-left" title="Production Node Components" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="reverse-proxy-notes.html" class="btn btn-neutral float-right" title="Using a Reverse Proxy" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, BigchainDB Contributors.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

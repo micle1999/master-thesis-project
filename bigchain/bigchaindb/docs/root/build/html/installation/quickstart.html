@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html class="writer-html4" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Introduction &mdash; BigchainDB 2.2.2 documentation</title><link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Node setup" href="node-setup/index.html" />
+    <link rel="prev" title="Installation" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            BigchainDB
+          </a>
+              <div class="version">
+                2.2
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../index.html">BigchainDB Docs Home</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../about-bigchaindb.html">About BigchainDB</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../terminology.html">Terminology</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../properties.html">Properties of BigchainDB</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../basic-usage.html">Basic usage</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Installation</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Introduction</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#setup-instructions-for-various-cases">Setup Instructions for Various Cases</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#develop-an-app-test">Develop an App Test</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#wip-quickstart">(WIP) Quickstart</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#try-bigchaindb">Try BigchainDB</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="node-setup/index.html">Node setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="network-setup/index.html">Network setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/index.html">API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="commands-and-backend/index.html">Commands And Backend</a></li>
+<li class="toctree-l2"><a class="reference internal" href="appendices/index.html">Appendices</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../drivers/index.html">Drivers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../query.html">Queries in BigchainDB</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing/index.html">Contributing to BigchainDB</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../korean/index.html">BigchainDB 문서</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">BigchainDB</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Installation</a></li>
+      <li class="breadcrumb-item active">Introduction</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/installation/quickstart.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <!---
+Copyright © 2020 Interplanetary Database Association e.V.,
+BigchainDB and IPDB software contributors.
+SPDX-License-Identifier: (Apache-2.0 AND CC-BY-4.0)
+Code is Apache-2.0 and docs are CC-BY-4.0
+---><div class="section" id="introduction">
+<h1>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h1>
+<p>This is the documentation for BigchainDB Server, or in other words, node -
+the BigchainDB software that is on servers (but not on clients).</p>
+<div class="section" id="setup-instructions-for-various-cases">
+<h2>Setup Instructions for Various Cases<a class="headerlink" href="#setup-instructions-for-various-cases" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Quickstart link below</li>
+<li><a class="reference internal" href="node-setup/index.html"><span class="doc">Set up a local BigchainDB node for development, experimenting and testing</span></a></li>
+<li><a class="reference internal" href="network-setup/index.html"><span class="doc">Set up and run a BigchainDB network</span></a></li>
+</ul>
+</div>
+<div class="section" id="develop-an-app-test">
+<h2>Develop an App Test<a class="headerlink" href="#develop-an-app-test" title="Permalink to this headline">¶</a></h2>
+<p>To develop an app that talks to a BigchainDB network, you’ll want a test network to test it against. You have a few options:</p>
+<ol class="simple">
+<li>The IPDB Test Network (or “Testnet”) is a free-to-use, publicly-available test network that you can test against. It is available at <a class="reference external" href="https://test.ipdb.io/">IPDB testnet</a>.</li>
+<li>You could also run a BigchainDB node on you local machine. One way is to use this node setup guide with a one-node “network” by using the all-in-one docker solution, or manual installation and configuration of the components. Another way is to use one of the deployment methods listed in the <a class="reference internal" href="network-setup/index.html"><span class="doc">network setup guide</span></a> or in the <a class="reference internal" href="../contributing/index.html"><span class="doc">the docs about contributing to BigchainDB</span></a>.</li>
+</ol>
+</div>
+<div class="section" id="wip-quickstart">
+<h2>(WIP) Quickstart<a class="headerlink" href="#wip-quickstart" title="Permalink to this headline">¶</a></h2>
+<style media="screen" type="text/css">
+    .button {
+        border-top: 1px solid #96d1f8;
+        background: #65a9d7;
+        background: -webkit-gradient(linear, left top, left bottom, from(#3e779d), to(#65a9d7));
+        background: -webkit-linear-gradient(top, #3e779d, #65a9d7);
+        background: -moz-linear-gradient(top, #3e779d, #65a9d7);
+        background: -ms-linear-gradient(top, #3e779d, #65a9d7);
+        background: -o-linear-gradient(top, #3e779d, #65a9d7);
+        padding: 8.5px 17px;
+        -webkit-border-radius: 3px;
+        -moz-border-radius: 3px;
+        border-radius: 3px;
+        -webkit-box-shadow: rgba(0,0,0,1) 0 1px 0;
+        -moz-box-shadow: rgba(0,0,0,1) 0 1px 0;
+        box-shadow: rgba(0,0,0,1) 0 1px 0;
+        text-shadow: rgba(0,0,0,.4) 0 1px 0;
+        color: white;
+        font-size: 16px;
+        font-family: Arial, Sans-Serif;
+        text-decoration: none;
+        vertical-align: middle;
+    }
+    .button:hover {
+        border-top-color: #28597a;
+        background: #28597a;
+        color: #ccc;
+    }
+    .button:active {
+        border-top-color: #1b435e;
+        background: #1b435e;
+    }
+    a.button:visited {
+        color: white
+    }
+    .buttondiv {
+        margin-bottom: 1.5em;
+    }
+</style></div>
+<div class="section" id="try-bigchaindb">
+<h2>Try BigchainDB<a class="headerlink" href="#try-bigchaindb" title="Permalink to this headline">¶</a></h2>
+<p>Create a transaction and post it to the test network:</p>
+<div class="buttondiv">
+    <a class="button" href="https://www.bigchaindb.com/developers/getstarted/">Try BigchainDB Now</a>
+</div><hr><br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br></div>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="Installation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="node-setup/index.html" class="btn btn-neutral float-right" title="Node setup" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, BigchainDB Contributors.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

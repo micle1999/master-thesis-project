@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html class="writer-html4" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Notes on Running a Local Dev Node as Processes &mdash; BigchainDB 2.2.2 documentation</title><link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../_static/language_data.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Run a BigchainDB network" href="run-dev-network-stack.html" />
+    <link rel="prev" title="Notes on Running a Local Dev Node with Docker Compose" href="run-node-with-docker-compose.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            BigchainDB
+          </a>
+              <div class="version">
+                2.2
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../index.html">BigchainDB Docs Home</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../about-bigchaindb.html">About BigchainDB</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../terminology.html">Terminology</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../properties.html">Properties of BigchainDB</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../basic-usage.html">Basic usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../installation/index.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../drivers/index.html">Drivers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../query.html">Queries in BigchainDB</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Contributing to BigchainDB</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html#contents">Contents</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../ways-to-contribute/index.html">Ways to Contribute</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">Developer Setup, Coding &amp; Contribution Process</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="write-code.html">Write Code</a></li>
+<li class="toctree-l4"><a class="reference internal" href="run-node-with-docker-compose.html">Notes on Running a Local Dev Node with Docker Compose</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Notes on Running a Local Dev Node as Processes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="run-dev-network-stack.html">Run a BigchainDB network</a></li>
+<li class="toctree-l4"><a class="reference internal" href="run-dev-network-ansible.html">Run a BigchainDB network with Ansible</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../cross-project-policies/index.html">Policies</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../korean/index.html">BigchainDB 문서</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">BigchainDB</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Contributing to BigchainDB</a></li>
+          <li class="breadcrumb-item"><a href="index.html">Developer Setup, Coding &amp; Contribution Process</a></li>
+      <li class="breadcrumb-item active">Notes on Running a Local Dev Node as Processes</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/contributing/dev-setup-coding-and-contribution-process/run-node-as-processes.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <!---
+Copyright © 2020 Interplanetary Database Association e.V.,
+BigchainDB and IPDB software contributors.
+SPDX-License-Identifier: (Apache-2.0 AND CC-BY-4.0)
+Code is Apache-2.0 and docs are CC-BY-4.0
+---><div class="section" id="notes-on-running-a-local-dev-node-as-processes">
+<h1>Notes on Running a Local Dev Node as Processes<a class="headerlink" href="#notes-on-running-a-local-dev-node-as-processes" title="Permalink to this headline">¶</a></h1>
+<p>The following doc describes how to run a local node for developing BigchainDB Tendermint version.</p>
+<p>There are two crucial dependencies required to start a local node:</p>
+<ul class="simple">
+<li>MongoDB</li>
+<li>Tendermint</li>
+</ul>
+<p>and of course you also need to install BigchainDB Sever from the local code you just developed.</p>
+<div class="section" id="install-and-run-mongodb">
+<h2>Install and Run MongoDB<a class="headerlink" href="#install-and-run-mongodb" title="Permalink to this headline">¶</a></h2>
+<p>MongoDB can be easily installed, just refer to their <a class="reference external" href="https://docs.mongodb.com/manual/installation/">installation documentation</a> for your distro.
+We know MongoDB 3.4 and 3.6 work with BigchainDB.
+After the installation of MongoDB is complete, run MongoDB using <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">mongod</span></code></p>
+</div>
+<div class="section" id="install-and-run-tendermint">
+<h2>Install and Run Tendermint<a class="headerlink" href="#install-and-run-tendermint" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="installing-a-tendermint-executable">
+<h3>Installing a Tendermint Executable<a class="headerlink" href="#installing-a-tendermint-executable" title="Permalink to this headline">¶</a></h3>
+<p>The version of BigchainDB Server described in these docs only works well with Tendermint 0.31.5 (not a higher version number). Install that:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>unzip
+$<span class="w"> </span>wget<span class="w"> </span>https://github.com/tendermint/tendermint/releases/download/v0.31.5/tendermint_v0.31.5_linux_amd64.zip
+$<span class="w"> </span>unzip<span class="w"> </span>tendermint_v0.31.5_linux_amd64.zip
+$<span class="w"> </span>rm<span class="w"> </span>tendermint_v0.31.5_linux_amd64.zip
+$<span class="w"> </span>sudo<span class="w"> </span>mv<span class="w"> </span>tendermint<span class="w"> </span>/usr/local/bin
+</pre></div>
+</div>
+</div>
+<div class="section" id="installing-tendermint-using-docker">
+<h3>Installing Tendermint Using Docker<a class="headerlink" href="#installing-tendermint-using-docker" title="Permalink to this headline">¶</a></h3>
+<p>Tendermint can be run directly using the docker image. Refer <a class="reference external" href="https://hub.docker.com/r/tendermint/tendermint/">here</a> for more details.</p>
+</div>
+<div class="section" id="installing-tendermint-from-source">
+<h3>Installing Tendermint from Source<a class="headerlink" href="#installing-tendermint-from-source" title="Permalink to this headline">¶</a></h3>
+<p>Before we can begin installing Tendermint one should ensure that the Golang is installed on system and <code class="docutils literal notranslate"><span class="pre">$GOPATH</span></code> should be set in the <code class="docutils literal notranslate"><span class="pre">.bashrc</span></code> or <code class="docutils literal notranslate"><span class="pre">.zshrc</span></code>. An example setup is shown below</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="nv">$GOPATH</span>
+/home/user/Documents/go
+$<span class="w"> </span>go<span class="w"> </span>-h
+Go<span class="w"> </span>is<span class="w"> </span>a<span class="w"> </span>tool<span class="w"> </span><span class="k">for</span><span class="w"> </span>managing<span class="w"> </span>Go<span class="w"> </span><span class="nb">source</span><span class="w"> </span>code.
+
+Usage:
+
+<span class="w">	</span>go<span class="w"> </span><span class="nb">command</span><span class="w"> </span><span class="o">[</span>arguments<span class="o">]</span>
+
+The<span class="w"> </span>commands<span class="w"> </span>are:
+
+<span class="w">	</span>build<span class="w">       </span>compile<span class="w"> </span>packages<span class="w"> </span>and<span class="w"> </span>dependencies
+<span class="w">	</span>clean<span class="w">       </span>remove<span class="w"> </span>object<span class="w"> </span>files
+
+...
+</pre></div>
+</div>
+<ul class="simple">
+<li>We can drop <code class="docutils literal notranslate"><span class="pre">GOPATH</span></code> in <code class="docutils literal notranslate"><span class="pre">PATH</span></code> so that installed Golang packages are directly available in the shell. To do that add the following to your <code class="docutils literal notranslate"><span class="pre">.bashrc</span></code></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span><span class="w"> </span><span class="nv">PATH</span><span class="o">=</span><span class="si">${</span><span class="nv">PATH</span><span class="si">}</span>:<span class="si">${</span><span class="nv">GOPATH</span><span class="si">}</span>/bin
+</pre></div>
+</div>
+<p>Follow <a class="reference external" href="https://tendermint.com/docs/introduction/install.html#from-source">the Tendermint docs</a> to install Tendermint from source.</p>
+<p>If the installation is successful then Tendermint is installed at <code class="docutils literal notranslate"><span class="pre">$GOPATH/bin</span></code>. To ensure Tendermint’s installed fine execute the following command,</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>tendermint<span class="w"> </span>-h
+Tendermint<span class="w"> </span>Core<span class="w"> </span><span class="o">(</span>BFT<span class="w"> </span>Consensus<span class="o">)</span><span class="w"> </span><span class="k">in</span><span class="w"> </span>Go
+
+Usage:
+<span class="w">  </span>tendermint<span class="w"> </span><span class="o">[</span>command<span class="o">]</span>
+
+Available<span class="w"> </span>Commands:
+<span class="w">  </span>gen_validator<span class="w">               </span>Generate<span class="w"> </span>new<span class="w"> </span>validator<span class="w"> </span>keypair
+<span class="w">  </span><span class="nb">help</span><span class="w">                        </span>Help<span class="w"> </span>about<span class="w"> </span>any<span class="w"> </span><span class="nb">command</span>
+<span class="w">  </span>init<span class="w">                        </span>Initialize<span class="w"> </span>Tendermint
+...
+</pre></div>
+</div>
+</div>
+<div class="section" id="running-tendermint">
+<h3>Running Tendermint<a class="headerlink" href="#running-tendermint" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>We can initialize and run tendermint as follows,</li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>tendermint<span class="w"> </span>init
+...
+
+$<span class="w"> </span>tendermint<span class="w"> </span>node<span class="w"> </span>--consensus.create_empty_blocks<span class="o">=</span><span class="nb">false</span>
+</pre></div>
+</div>
+<p>The argument <code class="docutils literal notranslate"><span class="pre">--consensus.create_empty_blocks=false</span></code> specifies that Tendermint should not commit empty blocks.</p>
+<ul class="simple">
+<li>To reset all the data stored in Tendermint execute the following command,</li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>tendermint<span class="w"> </span>unsafe_reset_all
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="install-bigchaindb">
+<h2>Install BigchainDB<a class="headerlink" href="#install-bigchaindb" title="Permalink to this headline">¶</a></h2>
+<p>To install BigchainDB from source (for dev), clone the repo and execute the following command, (it is better that you create a virtual env for this)</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/bigchaindb/bigchaindb.git
+$<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>bigchaindb
+$<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </span>.<span class="o">[</span>dev<span class="o">]</span><span class="w">  </span><span class="c1">#  or  pip install -e &#39;.[dev]&#39;  # for zsh</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="running-all-tests">
+<h2>Running All Tests<a class="headerlink" href="#running-all-tests" title="Permalink to this headline">¶</a></h2>
+<p>To execute tests when developing a feature or fixing a bug one could use the following command,</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>pytest<span class="w"> </span>-v
+</pre></div>
+</div>
+<p>NOTE: MongoDB and Tendermint should be running as discussed above.</p>
+<p>One could mark a specific test and execute the same by appending <code class="docutils literal notranslate"><span class="pre">-m</span> <span class="pre">my_mark</span></code> to the above command.</p>
+<p>Although the above should prove sufficient in most cases but in case tests are failing on Travis CI then the following command can be used to possibly replicate the failure locally,</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>docker-compose<span class="w"> </span>run<span class="w"> </span>--rm<span class="w"> </span>--no-deps<span class="w"> </span>bdb<span class="w"> </span>pytest<span class="w"> </span>-v<span class="w"> </span>--cov<span class="o">=</span>bigchaindb
+</pre></div>
+</div>
+<p>NOTE: before executing the above command the user must ensure that they reset the Tendermint container by executing <code class="docutils literal notranslate"><span class="pre">tendermint</span> <span class="pre">usafe_reset_all</span></code> command in the Tendermint container.</p>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="run-node-with-docker-compose.html" class="btn btn-neutral float-left" title="Notes on Running a Local Dev Node with Docker Compose" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="run-dev-network-stack.html" class="btn btn-neutral float-right" title="Run a BigchainDB network" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, BigchainDB Contributors.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

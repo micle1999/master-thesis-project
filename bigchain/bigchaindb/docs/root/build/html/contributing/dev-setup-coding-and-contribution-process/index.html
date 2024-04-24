@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html class="writer-html4" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Developer Setup, Coding &amp; Contribution Process &mdash; BigchainDB 2.2.2 documentation</title><link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../_static/language_data.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Write Code" href="write-code.html" />
+    <link rel="prev" title="Write Docs" href="../ways-to-contribute/write-docs.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            BigchainDB
+          </a>
+              <div class="version">
+                2.2
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../index.html">BigchainDB Docs Home</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../about-bigchaindb.html">About BigchainDB</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../terminology.html">Terminology</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../properties.html">Properties of BigchainDB</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../basic-usage.html">Basic usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../installation/index.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../drivers/index.html">Drivers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../query.html">Queries in BigchainDB</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Contributing to BigchainDB</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html#contents">Contents</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../ways-to-contribute/index.html">Ways to Contribute</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Developer Setup, Coding &amp; Contribution Process</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="write-code.html">Write Code</a></li>
+<li class="toctree-l4"><a class="reference internal" href="run-node-with-docker-compose.html">Notes on Running a Local Dev Node with Docker Compose</a></li>
+<li class="toctree-l4"><a class="reference internal" href="run-node-as-processes.html">Notes on Running a Local Dev Node as Processes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="run-dev-network-stack.html">Run a BigchainDB network</a></li>
+<li class="toctree-l4"><a class="reference internal" href="run-dev-network-ansible.html">Run a BigchainDB network with Ansible</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../cross-project-policies/index.html">Policies</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../korean/index.html">BigchainDB 문서</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">BigchainDB</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Contributing to BigchainDB</a></li>
+      <li class="breadcrumb-item active">Developer Setup, Coding &amp; Contribution Process</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/contributing/dev-setup-coding-and-contribution-process/index.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="section" id="developer-setup-coding-contribution-process">
+<h1>Developer Setup, Coding &amp; Contribution Process<a class="headerlink" href="#developer-setup-coding-contribution-process" title="Permalink to this headline">¶</a></h1>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="write-code.html">Write Code</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="write-code.html#know-what-you-want-to-write-code-to-do">Know What You Want to Write Code to Do</a></li>
+<li class="toctree-l2"><a class="reference internal" href="write-code.html#refresh-yourself-about-the-c4-process">Refresh Yourself about the C4 Process</a></li>
+<li class="toctree-l2"><a class="reference internal" href="write-code.html#set-up-your-local-machine-here-s-how">Set Up Your Local Machine. Here’s How.</a></li>
+<li class="toctree-l2"><a class="reference internal" href="write-code.html#before-you-start-writing-code">Before You Start Writing Code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="write-code.html#start-writing-code">Start Writing Code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="write-code.html#remember-to-write-tests">Remember to Write Tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="write-code.html#running-a-local-node-network-for-dev-and-test">Running a Local Node/Network for Dev and Test</a></li>
+<li class="toctree-l2"><a class="reference internal" href="write-code.html#create-the-pr-on-github">Create the PR on GitHub</a></li>
+<li class="toctree-l2"><a class="reference internal" href="write-code.html#merge">Merge!</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="run-node-with-docker-compose.html">Notes on Running a Local Dev Node with Docker Compose</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="run-node-with-docker-compose.html#setting-up-a-single-node-development-environment-with-docker-compose">Setting up a single node development environment with <code class="docutils literal notranslate"><span class="pre">docker-compose</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="run-node-as-processes.html">Notes on Running a Local Dev Node as Processes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="run-node-as-processes.html#install-and-run-mongodb">Install and Run MongoDB</a></li>
+<li class="toctree-l2"><a class="reference internal" href="run-node-as-processes.html#install-and-run-tendermint">Install and Run Tendermint</a></li>
+<li class="toctree-l2"><a class="reference internal" href="run-node-as-processes.html#install-bigchaindb">Install BigchainDB</a></li>
+<li class="toctree-l2"><a class="reference internal" href="run-node-as-processes.html#running-all-tests">Running All Tests</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="run-dev-network-stack.html">Run a BigchainDB network</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="run-dev-network-stack.html#machine-minimum-requirements">Machine Minimum Requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="run-dev-network-stack.html#download-the-scripts">Download the scripts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="run-dev-network-stack.html#quick-start">Quick Start</a></li>
+<li class="toctree-l2"><a class="reference internal" href="run-dev-network-stack.html#configure-the-bigchaindb-network">Configure the BigchainDB network</a></li>
+<li class="toctree-l2"><a class="reference internal" href="run-dev-network-stack.html#delete-unstack-a-bigchaindb-network">Delete/Unstack a BigchainDB network</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="run-dev-network-ansible.html">Run a BigchainDB network with Ansible</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="run-dev-network-ansible.html#minimum-requirements">Minimum Requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="run-dev-network-ansible.html#clone-the-bigchaindb-repository">Clone the BigchainDB repository</a></li>
+<li class="toctree-l2"><a class="reference internal" href="run-dev-network-ansible.html#install-dependencies">Install dependencies</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../ways-to-contribute/write-docs.html" class="btn btn-neutral float-left" title="Write Docs" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="write-code.html" class="btn btn-neutral float-right" title="Write Code" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, BigchainDB Contributors.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

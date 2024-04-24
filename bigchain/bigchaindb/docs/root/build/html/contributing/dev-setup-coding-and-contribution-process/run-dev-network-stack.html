@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html class="writer-html4" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Run a BigchainDB network &mdash; BigchainDB 2.2.2 documentation</title><link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../_static/language_data.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Run a BigchainDB network with Ansible" href="run-dev-network-ansible.html" />
+    <link rel="prev" title="Notes on Running a Local Dev Node as Processes" href="run-node-as-processes.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            BigchainDB
+          </a>
+              <div class="version">
+                2.2
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../index.html">BigchainDB Docs Home</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../about-bigchaindb.html">About BigchainDB</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../terminology.html">Terminology</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../properties.html">Properties of BigchainDB</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../basic-usage.html">Basic usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../installation/index.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../drivers/index.html">Drivers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../query.html">Queries in BigchainDB</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Contributing to BigchainDB</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html#contents">Contents</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../ways-to-contribute/index.html">Ways to Contribute</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">Developer Setup, Coding &amp; Contribution Process</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="write-code.html">Write Code</a></li>
+<li class="toctree-l4"><a class="reference internal" href="run-node-with-docker-compose.html">Notes on Running a Local Dev Node with Docker Compose</a></li>
+<li class="toctree-l4"><a class="reference internal" href="run-node-as-processes.html">Notes on Running a Local Dev Node as Processes</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Run a BigchainDB network</a></li>
+<li class="toctree-l4"><a class="reference internal" href="run-dev-network-ansible.html">Run a BigchainDB network with Ansible</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../cross-project-policies/index.html">Policies</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../korean/index.html">BigchainDB 문서</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">BigchainDB</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Contributing to BigchainDB</a></li>
+          <li class="breadcrumb-item"><a href="index.html">Developer Setup, Coding &amp; Contribution Process</a></li>
+      <li class="breadcrumb-item active">Run a BigchainDB network</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/contributing/dev-setup-coding-and-contribution-process/run-dev-network-stack.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <!---
+Copyright © 2020 Interplanetary Database Association e.V.,
+BigchainDB and IPDB software contributors.
+SPDX-License-Identifier: (Apache-2.0 AND CC-BY-4.0)
+Code is Apache-2.0 and docs are CC-BY-4.0
+---><div class="section" id="run-a-bigchaindb-network">
+<h1>Run a BigchainDB network<a class="headerlink" href="#run-a-bigchaindb-network" title="Permalink to this headline">¶</a></h1>
+<p><strong>NOT for Production Use</strong></p>
+<p>You can use the following instructions to deploy a single or multi node
+BigchainDB network for dev/test using the extensible <code class="docutils literal notranslate"><span class="pre">stack</span></code> script(s).</p>
+<p>Currently, this workflow is only supported for the following Operating systems:</p>
+<ul class="simple">
+<li>Ubuntu &gt;= 16.04</li>
+<li>CentOS &gt;= 7</li>
+<li>Fedora &gt;= 24</li>
+<li>MacOSX</li>
+</ul>
+<div class="section" id="machine-minimum-requirements">
+<h2>Machine Minimum Requirements<a class="headerlink" href="#machine-minimum-requirements" title="Permalink to this headline">¶</a></h2>
+<p>Minimum resource requirements for a single node BigchainDB dev setup. <strong>The more the better</strong>:</p>
+<ul class="simple">
+<li>Memory &gt;= 512MB</li>
+<li>VCPUs &gt;= 1</li>
+</ul>
+</div>
+<div class="section" id="download-the-scripts">
+<h2>Download the scripts<a class="headerlink" href="#download-the-scripts" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><strong>Note</strong>: If you’re working on BigchainDB Server code, on a branch based on
+recent code, then you already have local recent versions of <em>stack.sh</em> and
+<em>unstack.sh</em> in your bigchaindb/pkg/scripts/ directory. Otherwise you can
+get them using:</div></blockquote>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>$ export GIT_BRANCH=master
+$ curl -fOL https://raw.githubusercontent.com/bigchaindb/bigchaindb/${GIT_BRANCH}/pkg/scripts/stack.sh
+
+# Optional
+$ curl -fOL https://raw.githubusercontent.com/bigchaindb/bigchaindb/${GIT_BRANCH}/pkg/scripts/unstack.sh
+</pre></div>
+</div>
+</div>
+<div class="section" id="quick-start">
+<h2>Quick Start<a class="headerlink" href="#quick-start" title="Permalink to this headline">¶</a></h2>
+<p>If you run <code class="docutils literal notranslate"><span class="pre">stack.sh</span></code> out of the box i.e. without any configuration changes, you will be able to deploy a 4 node
+BigchainDB network with Docker containers, created from <code class="docutils literal notranslate"><span class="pre">master</span></code> branch of <code class="docutils literal notranslate"><span class="pre">bigchaindb/bigchaindb</span></code> repo and Tendermint version <code class="docutils literal notranslate"><span class="pre">0.22.8</span></code>.</p>
+<p><strong>Note</strong>: Run <code class="docutils literal notranslate"><span class="pre">stack.sh</span></code> with either root or non-root user with sudo enabled.</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>$ bash stack.sh
+...Logs..
+.........
+.........
+Finished stacking!
+</pre></div>
+</div>
+</div>
+<div class="section" id="configure-the-bigchaindb-network">
+<h2>Configure the BigchainDB network<a class="headerlink" href="#configure-the-bigchaindb-network" title="Permalink to this headline">¶</a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">stack.sh</span></code> script has multiple deployment methods and parameters and they can be explored using: <code class="docutils literal notranslate"><span class="pre">bash</span> <span class="pre">stack.sh</span> <span class="pre">-h</span></code></p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>$ bash stack.sh -h
+
+    Usage: $ bash stack.sh [-h]
+
+    Deploys the BigchainDB network.
+
+    ENV[STACK_SIZE]
+        Set STACK_SIZE environment variable to the size of the network you desire.
+        Network mimics a production network environment with single or multiple BDB
+        nodes. (default: 4).
+
+    ENV[STACK_TYPE]
+        Set STACK_TYPE environment variable to the type of deployment you desire.
+        You can set it one of the following: [&quot;docker&quot;, &quot;local&quot;, &quot;cloud&quot;].
+        (default: docker)
+
+    ENV[STACK_TYPE_PROVIDER]
+        Set only when STACK_TYPE=&quot;cloud&quot;. Only &quot;azure&quot; is supported.
+        (default: )
+
+    ENV[STACK_VM_MEMORY]
+        (Optional) Set only when STACK_TYPE=&quot;local&quot;. This sets the memory
+        of the instance(s) spawned. (default: 2048)
+
+    ENV[STACK_VM_CPUS]
+        (Optional) Set only when STACK_TYPE=&quot;local&quot;. This sets the number of VCPUs
+        of the instance(s) spawned. (default: 2)
+
+    ENV[STACK_BOX_NAME]
+        (Optional) Set only when STACK_TYPE=&quot;local&quot;. This sets the box Vagrant box name
+        of the instance(s) spawned. (default: ubuntu/xenial64)
+
+    ENV[STACK_REPO]
+        (Optional) To configure bigchaindb repo to use, set STACK_REPO environment
+        variable. (default: bigchaindb/bigchaindb)
+
+    ENV[STACK_BRANCH]
+        (Optional) To configure bigchaindb repo branch to use set STACK_BRANCH environment
+        variable. (default: master)
+
+    ENV[TM_VERSION]
+        (Optional) Tendermint version to use for the setup. (default: 0.22.8)
+
+    ENV[MONGO_VERSION]
+        (Optional) MongoDB version to use with the setup. (default: 3.6)
+
+    ENV[AZURE_CLIENT_ID]
+        Only required when STACK_TYPE=&quot;cloud&quot; and STACK_TYPE_PROVIDER=&quot;azure&quot;. Steps to generate:
+        https://github.com/Azure/vagrant-azure#create-an-azure-active-directory-aad-application
+
+    ENV[AZURE_TENANT_ID]
+        Only required when STACK_TYPE=&quot;cloud&quot; and STACK_TYPE_PROVIDER=&quot;azure&quot;. Steps to generate:
+        https://github.com/Azure/vagrant-azure#create-an-azure-active-directory-aad-application
+
+    ENV[AZURE_SUBSCRIPTION_ID]
+        Only required when STACK_TYPE=&quot;cloud&quot; and STACK_TYPE_PROVIDER=&quot;azure&quot;. Steps to generate:
+        https://github.com/Azure/vagrant-azure#create-an-azure-active-directory-aad-application
+
+    ENV[AZURE_CLIENT_SECRET]
+        Only required when STACK_TYPE=&quot;cloud&quot; and STACK_TYPE_PROVIDER=&quot;azure&quot;. Steps to generate:
+        https://github.com/Azure/vagrant-azure#create-an-azure-active-directory-aad-application
+
+    ENV[AZURE_REGION]
+        (Optional) Only applicable, when STACK_TYPE=&quot;cloud&quot; and STACK_TYPE_PROVIDER=&quot;azure&quot;.
+        Azure region for the BigchainDB instance. Get list of regions using Azure CLI.
+        e.g. az account list-locations. (default: westeurope)
+
+    ENV[AZURE_IMAGE_URN]
+        (Optional) Only applicable, when STACK_TYPE=&quot;cloud&quot; and STACK_TYPE_PROVIDER=&quot;azure&quot;.
+        Azure image to use. Get list of available images using Azure CLI.
+        e.g. az vm image list --output table. (default: Canonical:UbuntuServer:16.04-LTS:latest)
+
+    ENV[AZURE_RESOURCE_GROUP]
+        (Optional) Only applicable, when STACK_TYPE=&quot;cloud&quot; and STACK_TYPE_PROVIDER=&quot;azure&quot;.
+        Name of Azure resource group for the instance.
+        (default: bdb-vagrant-rg-2018-05-30)
+
+    ENV[AZURE_DNS_PREFIX]
+        (Optional) Only applicable, when STACK_TYPE=&quot;cloud&quot; and STACK_TYPE_PROVIDER=&quot;azure&quot;.
+        DNS Prefix of the instance. (default: bdb-instance-2018-05-30)
+
+    ENV[AZURE_ADMIN_USERNAME]
+        (Optional) Only applicable, when STACK_TYPE=&quot;cloud&quot; and STACK_TYPE_PROVIDER=&quot;azure&quot;.
+        Admin username of the the instance. (default: vagrant)
+
+    ENV[AZURE_VM_SIZE]
+        (Optional) Only applicable, when STACK_TYPE=&quot;cloud&quot; and STACK_TYPE_PROVIDER=&quot;azure&quot;.
+        Azure VM size. (default: Standard_D2_v2)
+
+    ENV[SSH_PRIVATE_KEY_PATH]
+        Only required when STACK_TYPE=&quot;cloud&quot; and STACK_TYPE_PROVIDER=&quot;azure&quot;. Absolute path of
+        SSH keypair required to log into the Azure instance.
+
+    -h
+        Show this help and exit.
+</pre></div>
+</div>
+<p>The parameter that differentiates between the deployment type is <code class="docutils literal notranslate"><span class="pre">STACK_TYPE</span></code> which currently, supports
+an opinionated deployment of BigchainDB on <code class="docutils literal notranslate"><span class="pre">docker</span></code>, <code class="docutils literal notranslate"><span class="pre">local</span></code> and <code class="docutils literal notranslate"><span class="pre">cloud</span></code>.</p>
+<div class="section" id="stack-type-docker">
+<h3>STACK_TYPE: docker<a class="headerlink" href="#stack-type-docker" title="Permalink to this headline">¶</a></h3>
+<p>This configuration deploys a docker based BigchainDB network on the dev/test machine that you are running <code class="docutils literal notranslate"><span class="pre">stack.sh</span></code> on. This is also the default <code class="docutils literal notranslate"><span class="pre">STACK_TYPE</span></code> config for <code class="docutils literal notranslate"><span class="pre">stack.sh</span></code>.</p>
+<div class="section" id="example-docker">
+<h4>Example: docker<a class="headerlink" href="#example-docker" title="Permalink to this headline">¶</a></h4>
+<p>Deploy a 4 node docker based BigchainDB network on your host.</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>#Optional, since 4 is the default size.
+$ export STACK_SIZE=4
+
+#Optional, since docker is the default type.
+$ export STACK_TYPE=docker
+
+#Optional, repo to use for the network deployment
+# Default: bigchaindb/bigchaindb
+$ export STACK_REPO=bigchaindb/bigchaindb
+
+#Optional, codebase to use for the network deployment
+# Default: master
+$ export STACK_BRANCH=master
+
+#Optional, since 0.22.8 is the default tendermint version.
+$ export TM_VERSION=0.22.8
+
+#Optional, since 3.6 is the default MongoDB version.
+$ export MONGO_VERSION=3.6
+
+$ bash stack.sh
+</pre></div>
+</div>
+<p><strong>Note</strong>: For MacOSX users, the script will not install <code class="docutils literal notranslate"><span class="pre">Docker</span> <span class="pre">for</span> <span class="pre">Mac</span></code>, it only detects if <code class="docutils literal notranslate"><span class="pre">docker</span></code> is installed on the system, if not make sure to install <a class="reference external" href="https://docs.docker.com/docker-for-mac/">Docker for Mac</a>. Also make sure Docker API Version &gt; 1.25. To check Docker API Version:</p>
+<p><code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">version</span> <span class="pre">--format</span> <span class="pre">'{{.Server.APIVersion}}'</span></code></p>
+</div>
+</div>
+<div class="section" id="stack-type-local">
+<h3>STACK_TYPE: local<a class="headerlink" href="#stack-type-local" title="Permalink to this headline">¶</a></h3>
+<p>This configuration deploys a VM based BigchainDB network on your host/dev. All the services are running as processes on the VMs. For <code class="docutils literal notranslate"><span class="pre">local</span></code> deployments the following dependencies must be installed i.e.</p>
+<ul class="simple">
+<li>Vagrant<ul>
+<li>Vagrant plugins.<ul>
+<li>vagrant-cachier</li>
+<li>vagrant-vbguest</li>
+<li>vagrant-hosts</li>
+<li>vagrant-azure<ul>
+<li><code class="docutils literal notranslate"><span class="pre">vagrant</span> <span class="pre">plugin</span> <span class="pre">install</span> <span class="pre">vagrant-cachier</span> <span class="pre">vagrant-vbguest</span> <span class="pre">vagrant-hosts</span> <span class="pre">vagrant-azure</span></code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference external" href="https://www.virtualbox.org/wiki/Downloads">Virtualbox</a></li>
+</ul>
+<div class="section" id="example-vm">
+<h4>Example: VM<a class="headerlink" href="#example-vm" title="Permalink to this headline">¶</a></h4>
+<p>Deploy a 4 node VM based BigchainDB network.</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>$ export STACK_TYPE=local
+
+# Optional, since 4 is the default size.
+$ export STACK_SIZE=4
+
+# Optional, default is 2048
+$ export STACK_VM_MEMORY=2048 
+
+#Optional, default is 1
+$ export STACK_VM_CPUS=1
+
+#Optional, default is ubuntu/xenial64. Supported/tested images: bento/centos-7, fedora/25-cloud-base
+$ export STACK_BOX_NAME=ubuntu/xenial64
+
+#Optional, repo to use for the network deployment
+# Default: bigchaindb/bigchaindb
+$ export STACK_REPO=bigchaindb/bigchaindb
+
+#Optional, codebase to use for the network deployment
+# Default: master
+$ export STACK_BRANCH=master
+
+#Optional, since 0.22.8 is the default tendermint version
+$ export TM_VERSION=0.22.8
+
+#Optional, since 3.6 is the default MongoDB version.
+$ export MONGO_VERSION=3.6
+
+$ bash stack.sh
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="stack-type-cloud">
+<h3>STACK_TYPE: cloud<a class="headerlink" href="#stack-type-cloud" title="Permalink to this headline">¶</a></h3>
+<p>This configuration deploys a docker based BigchainDB network on a cloud instance. Currently, only Azure is supported.
+For <code class="docutils literal notranslate"><span class="pre">cloud</span></code> deployments the following dependencies must be installed i.e.</p>
+<ul class="simple">
+<li>Vagrant<ul>
+<li>Vagrant plugins.<ul>
+<li>vagrant-cachier</li>
+<li>vagrant-vbguest</li>
+<li>vagrant-hosts</li>
+<li>vagrant-azure<ul>
+<li><code class="docutils literal notranslate"><span class="pre">vagrant</span> <span class="pre">plugin</span> <span class="pre">install</span> <span class="pre">vagrant-cachier</span> <span class="pre">vagrant-vbguest</span> <span class="pre">vagrant-hosts</span> <span class="pre">vagrant-azure</span></code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<div class="section" id="example-stack">
+<h4>Example: stack<a class="headerlink" href="#example-stack" title="Permalink to this headline">¶</a></h4>
+<p>Deploy a 4 node docker based BigchainDB network on an Azure instance.</p>
+<ul>
+<li><p class="first"><a class="reference external" href="https://github.com/Azure/vagrant-azure#create-an-azure-active-directory-aad-application">Create an Azure Active Directory(AAD) Application</a></p>
+</li>
+<li><p class="first">Generate or specify an SSH keypair to login to the Azure instance.</p>
+<ul class="simple">
+<li><strong>Example:</strong></li>
+</ul>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>$ ssh-keygen -t rsa -C &quot;&lt;name&gt;&quot; -f /path/to/key/&lt;name&gt;
+</pre></div>
+</div>
+</li>
+<li><p class="first">Configure parameters for <code class="docutils literal notranslate"><span class="pre">stack.sh</span></code></p>
+</li>
+</ul>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span># After creating the AAD application with access to Azure Resource
+# Group Manager for your subscription, it will return a JSON object
+
+$ export AZURE_CLIENT_ID=&lt;value from azure.appId&gt;
+
+$ export AZURE_TENANT_ID=&lt;value from azure.tenant&gt;
+
+# Can be retrieved via
+# az account list --query &quot;[?isDefault].id&quot; -o tsv
+$ export AZURE_SUBSCRIPTION_ID=&lt;your Azure subscription ID&gt;
+
+$ export AZURE_CLIENT_SECRET=&lt;value from azure.password&gt;
+
+$ export STACK_TYPE=cloud
+
+# Currently on azure is supported
+$ export STACK_TYPE_PROVIDER=azure
+
+$ export SSH_PRIVATE_KEY_PATH=&lt;/path/to/private/key&gt;
+
+# Optional, Azure region of the instance. Default: westeurope
+$ export AZURE_REGION=westeurope
+
+# Optional, Azure image urn of the instance. Default: Canonical:UbuntuServer:16.04-LTS:latest
+$ export AZURE_IMAGE_URN=Canonical:UbuntuServer:16.04-LTS:latest
+
+# Optional, Azure resource group. Default: bdb-vagrant-rg-yyyy-mm-dd(current date)
+$ export AZURE_RESOURCE_GROUP=bdb-vagrant-rg-2018-01-01
+
+# Optional, DNS prefix of the Azure instance. Default: bdb-instance-yyyy-mm-dd(current date)
+$ export AZURE_DNS_PREFIX=bdb-instance-2018-01-01
+
+# Optional, Admin username of the Azure instance. Default: vagrant
+$ export AZURE_ADMIN_USERNAME=vagrant
+
+# Optional, Azure instance size. Default: Standard_D2_v2
+$ export AZURE_VM_SIZE=Standard_D2_v2
+
+$ bash stack.sh
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="delete-unstack-a-bigchaindb-network">
+<h2>Delete/Unstack a BigchainDB network<a class="headerlink" href="#delete-unstack-a-bigchaindb-network" title="Permalink to this headline">¶</a></h2>
+<p>Export all the variables exported for the corresponding <code class="docutils literal notranslate"><span class="pre">stack.sh</span></code> script and
+run <code class="docutils literal notranslate"><span class="pre">unstack.sh</span></code> to delete/remove/unstack the BigchainDB network/stack.</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>$ bash unstack.sh
+
+OR
+
+# -s implies soft unstack. i.e. Only applicable for local and cloud based
+# networks. Only deletes/stops the docker(s)/process(es) and does not
+# delete the instances created via Vagrant or on Cloud. Default: hard
+$ bash unstack.sh -s
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="run-node-as-processes.html" class="btn btn-neutral float-left" title="Notes on Running a Local Dev Node as Processes" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="run-dev-network-ansible.html" class="btn btn-neutral float-right" title="Run a BigchainDB network with Ansible" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, BigchainDB Contributors.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
