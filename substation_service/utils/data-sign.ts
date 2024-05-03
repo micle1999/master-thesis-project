@@ -12,7 +12,6 @@ export class DataSigner{
     constructor(substationId: string){
         this.substationId = substationId;
         this.encoder = new TextEncoder();
-         //Possible problem -> Create instance for every data sign
     }
     
     async signData(data: string) : Promise<string> {
@@ -51,19 +50,6 @@ export class DataSigner{
           true,
           ["sign"],
         );
-    }
-
-    private str2ab(str: string) {
-        const buf = new ArrayBuffer(str.length);
-        const bufView = new Uint8Array(buf);
-        for (let i = 0, strLen = str.length; i < strLen; i++) {
-            bufView[i] = str.charCodeAt(i);
-        }
-        return buf;
-    }
-
-    private ab2str(buf: ArrayBuffer) {
-        return String.fromCharCode.apply(null, Array.from(new Uint8Array(buf)));
     }
 
 }

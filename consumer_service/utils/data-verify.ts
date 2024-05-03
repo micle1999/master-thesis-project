@@ -10,7 +10,6 @@ export class DataVerifier{
 
     constructor(){
         this.encoder = new TextEncoder();
-         //Possible problem -> Create instance for every data sign
         this.keys = new Map<string, crypto.KeyObject>();
     }
     
@@ -24,14 +23,10 @@ export class DataVerifier{
             this.keys.set(substationId, key);
         }
         
-        console.log("NOT VERIFIED1 : ");
-
         this.verify.write(data)
         this.verify.end()
         
-        console.log("NOT VERIFIED 2: ");
         const verified = this.verify.verify(key, digest, 'hex');
-        console.log("VERIFIED : " + verified);
         return verified
     }
 
